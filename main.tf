@@ -9,7 +9,7 @@ resource "aws_eks_cluster" "poc" {
  
   vpc_config {
     # These two subnets MUST belong to the same VPC
-    subnet_ids = ["subnet-0160ded4c7fafd2fe", "subnet-024cb83c35bb9158a"]
+    subnet_ids = ["subnet-024cb83c35bb9158a", "subnet-0878fcba123fb6a6a"]
   }
 }
  
@@ -18,7 +18,7 @@ resource "aws_eks_node_group" "poc_nodes" {
   cluster_name    = aws_eks_cluster.poc.name
   node_group_name = "poc-node-group"
   node_role_arn   = "arn:aws:iam::567017110325:role/eks-node-role-poc"
-  subnet_ids      = ["subnet-0160ded4c7fafd2fe", "subnet-024cb83c35bb9158a"]
+  subnet_ids = ["subnet-024cb83c35bb9158a", "subnet-0878fcba123fb6a6a"]
  
   scaling_config {
     desired_size = 2
