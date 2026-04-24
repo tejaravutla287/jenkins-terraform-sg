@@ -17,7 +17,6 @@ spec:
         image: nginx:latest
         ports:
         - containerPort: 80
-        # --- ADD THESE LINES BELOW ---
         volumeMounts:
         - name: html-volume
           mountPath: /usr/share/nginx/html
@@ -25,3 +24,16 @@ spec:
       - name: html-volume
         configMap:
           name: web-content
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: html-service
+spec:
+  selector:
+    app: my-html-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
